@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashLayoutComponent } from './layouts/dash-layout/dash-layout.component';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { HomeComponent } from './layouts/home/home.component';
 import { GeneralLayoutComponent } from './layouts/general-layout/general-layout.component';
+import { LoginComponent } from './layouts/login/login.component';
+import { RegisterComponent } from './layouts/register/register.component';
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo:'/home',
+    redirectTo:'/login',
     pathMatch:'full'
   },
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
     children:[
       {path:'',component:HomeComponent,pathMatch:'full'}
     ]
-  }, 
+  },
   {
     path:'dashboard',
     component:DashLayoutComponent,
@@ -28,17 +29,8 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path:'auth',
-    component:AuthLayoutComponent,
-    children:[
-      {
-        path:'',
-        loadChildren:() =>import('./layouts/auth-layout/auth-layout.module').then(m=> m.AuthLayoutModule)
-      }
-    ]
-  }
-
+  {path:'/login',component:LoginComponent,pathMatch:'full'},
+  {path:'/register',component:RegisterComponent,pathMatch:'full'}
 ];
 
 @NgModule({

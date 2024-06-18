@@ -32,8 +32,7 @@ namespace Product.API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user != null)
-            {
+            if (user == null){ return Unauthorized(); }
                 var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
@@ -64,12 +63,18 @@ namespace Product.API.Controllers
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var token = tokenHandler.CreateToken(tokenDescriptor);
                     var TokenString = tokenHandler.WriteToken(token);
-
-                    return Ok(TokenString);
+                
+                    var AuthResponse = new AuthResponseViewModel
+                    {
+                        Token = TokenString,
+                        IsSuccess = true,
+                        Message = "User" + user.FirstName + "is Logged in Successfully"
+                    };
+                    return Ok(AuthResponse);
                 }
-            }
-            return Unauthorized();
+                return BadRequest();
         }
+        
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
@@ -84,6 +89,8 @@ namespace Product.API.Controllers
 
             var newuser = new AppUser
             {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 UserName = model.Email,
                 Email = model.Email,
                 EmailConfirmed = true,
