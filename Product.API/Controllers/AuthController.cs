@@ -65,12 +65,7 @@ namespace Product.API.Controllers
                     var token = tokenHandler.CreateToken(tokenDescriptor);
                     var TokenString = tokenHandler.WriteToken(token);
 
-                    return Ok(new AuthResponseViewModel
-                    {
-                        Token = TokenString,
-                        IsSuccess = true,
-                        Message = "Login Success"
-                    });
+                    return Ok(TokenString);
                 }
             }
             return Unauthorized();
@@ -89,8 +84,6 @@ namespace Product.API.Controllers
 
             var newuser = new AppUser
             {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
                 UserName = model.Email,
                 Email = model.Email,
                 EmailConfirmed = true,
@@ -101,13 +94,16 @@ namespace Product.API.Controllers
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(newuser, "User");
-                return Ok(new AuthResponseViewModel
-                {
-                    IsSuccess =true,
-                    Message = "The User " + newuser.UserName + " is Created successfully"
-                });
+                return Ok("The User " + newuser.UserName + " is Created successfully");
             }
             return BadRequest(result.Errors);
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok("The User is logged Out successfully");
         }
     }
 }
