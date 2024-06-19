@@ -8,15 +8,13 @@
       "schematics": {
         "@schematics/angular:component": {
           "inlineStyle": true,
-          "skipTests": true,
-          "standalone": false
+          "skipTests": true
         },
         "@schematics/angular:class": {
           "skipTests": true
         },
         "@schematics/angular:directive": {
-          "skipTests": true,
-          "standalone": false
+          "skipTests": true
         },
         "@schematics/angular:guard": {
           "skipTests": true
@@ -25,8 +23,7 @@
           "skipTests": true
         },
         "@schematics/angular:pipe": {
-          "skipTests": true,
-          "standalone": false
+          "skipTests": true
         },
         "@schematics/angular:resolver": {
           "skipTests": true
@@ -54,20 +51,9 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/css/sb-admin-2.css",
-              "src/assets/vendor/fontawesome-free/css/all.min.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/vendor/jquery/jquery.min.js",
-              "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/vendor/jquery-easing/jquery.easing.min.js",
-              "src/assets/js/sb-admin-2.js",
-              "src/assets/vendor/chart.js/Chart.min.js",
-              "src/assets/js/demo/chart-area-demo.js",
-              "src/assets/js/demo/chart-pie-demo.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -124,24 +110,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/css/sb-admin-2.css",
-              "src/assets/vendor/fontawesome-free/css/all.min.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/vendor/jquery/jquery.min.js",
-              "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/vendor/jquery-easing/jquery.easing.min.js",              
-              "src/assets/vendor/chart.js/Chart.min.js",
-              "src/assets/js/demo/chart-area-demo.js",
-              "src/assets/js/demo/chart-pie-demo.js"
-            ]
+            "scripts": []
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "35ea3675-48c7-4317-9ac0-804a1ca5bd23"
   }
 }
